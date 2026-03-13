@@ -5,6 +5,8 @@
     "": {
       "name": "weather-app",
       "dependencies": {
+        "@fontsource-variable/manrope": "^5.2.8",
+        "@fontsource-variable/sora": "^5.2.8",
         "@tailwindcss/vite": "^4.2.1",
         "@tanstack/react-query": "^5.90.21",
         "lucide-react": "^0.577.0",
@@ -86,6 +88,10 @@
     "@eslint/object-schema": ["@eslint/object-schema@2.1.7", "", {}, "sha512-VtAOaymWVfZcmZbp6E2mympDIHvyjXs/12LqWYjVw6qjrfF+VK+fyG33kChz3nnK+SU5/NeHOqrTEHS8sXO3OA=="],
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.4.1", "", { "dependencies": { "@eslint/core": "^0.17.0", "levn": "^0.4.1" } }, "sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA=="],
+
+    "@fontsource-variable/manrope": ["@fontsource-variable/manrope@5.2.8", "", {}, "sha512-nc9lOuCRz73UHnovDE2bwXUdghE2SEOc7Aii0qGe3CLyE03W1a7VnY5Z6euRiapiKbCkGS+eXbY3s/kvWeGeSw=="],
+
+    "@fontsource-variable/sora": ["@fontsource-variable/sora@5.2.8", "", {}, "sha512-sP+ILTfi5r3cqmMBntI4ooQNxFI+LyHyD5hcPbWwwL4uh4kKFAkOz0w2veCXjz18fKRdva6OG0dY+5yQ02f30w=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
