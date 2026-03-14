@@ -3,12 +3,17 @@ import { Input } from "@/components/ui/input";
 export function HomePage() {
   return (
     <>
-      <header>Header</header>
-      <main>Información del clima</main>
+      <header>
+        <h1 className="font-manrope text-3xl font-bold md:text-4xl">
+          Ciudades
+        </h1>
+      </header>
+      <main className="flex grow flex-col items-center justify-center gap-4">
+        Información del clima
+      </main>
       <footer>
         <Input placeholder="Buscar ciudad..." />
       </footer>
-      <div className="flex bg-red-500 p-4 text-white">Hola</div>
     </>
   );
 }
