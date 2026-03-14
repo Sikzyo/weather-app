@@ -18,6 +18,8 @@ bun run lint   # eslint
 - **SOLID**: single responsibility, open/closed, dependency inversion
 - Small, focused components — compose over inherit
 - No unused locals/params (enforced by tsc)
+- Never run `bun run build` after every change; only when explicitly requested
+- Always run `bun run lint` after every change
 
 ## Key conventions
 
@@ -38,6 +40,13 @@ bun run lint   # eslint
 - One responsibility per component; if it grows, split it
 - All UI components live in `src/components/ui/` and follow the `cva` + `cn()` pattern for variants
 - Use `cn()` from `@/lib/utils` for all className merging
+
+### HTML
+
+- Always use semantic elements (`<main>`, `<section>`, `<article>`, `<nav>`, `<header>`, `<footer>`, etc.)
+- Use semantic elements when they fit the content's meaning; use `<div>` and `<span>` only for layout/styling purposes with no semantic value
+- Markup must be valid and accessible (correct nesting, proper ARIA when needed)
+- Always write HTML structure first without styles; add Tailwind classes after
 
 ### State & data fetching
 
