@@ -1,6 +1,6 @@
 import { CloudOff } from "lucide-react";
 
-export default function EmptyState() {
+export function EmptyState() {
   return (
     <div className="text-gray-7 flex flex-col items-center gap-4">
       <CloudOff className="size-25" />
