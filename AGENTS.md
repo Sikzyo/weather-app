@@ -1,166 +1,54 @@
-# AGENTS.md - Weather App Development Guide
+# AGENTS.md
 
-This document provides guidelines and instructions for agents working on this codebase.
+## Stack
 
-## Project Overview
+React 19 · TypeScript (strict) · Vite 8 · Tailwind CSS 4 · Bun
 
-- **Type**: React + TypeScript + Vite web application
-- **Stack**: React 19, TypeScript, Tailwind CSS 4, Vite 8
-- **Package Manager**: npm
-- **Path Alias**: `@/*` maps to project root (configured in tsconfig.json)
+## Commands
 
----
-
-## Build / Lint / Test Commands
-
-### Development
 ```bash
-npm run dev          # Start Vite dev server with HMR
+bun dev        # dev server
+bun run build  # tsc -b + vite build
+bun run lint   # eslint
 ```
 
-### Build
-```bash
-npm run build        # Run TypeScript compiler (tsc -b) then Vite build
-npm run preview      # Preview production build
-```
+## Principles
 
-### Linting
-```bash
-npm run lint         # Run ESLint on all files
-```
+- **KISS**: prefer the simplest solution that works
+- **SOLID**: single responsibility, open/closed, dependency inversion
+- Small, focused components — compose over inherit
+- No unused locals/params (enforced by tsc)
 
-### Testing
-No test framework is currently configured. If tests are added later:
-- Run single test file: `vitest run path/to/test.test.ts`
-- Run tests in watch mode: `vitest`
-- Add test script to package.json following Vitest conventions
-
----
-
-## Code Style Guidelines
-
-### General Principles
-- Use functional components with hooks
-- Prefer composition over inheritance
-- Keep components small and focused
-- Use TypeScript strict mode (enabled in tsconfig.app.json)
+## Key conventions
 
 ### Imports
-- Use path aliases: `import { cn } from "@/lib/utils"`
-- Order imports: external libs → internal aliases → relative paths
-- Use `import { type Foo }` syntax for type-only imports
-- Use `@tanstack/react-query` for data fetching
 
-### Formatting
-- Uses ESLint with TypeScript ESLint, React Hooks, and React Refresh plugins
-- Run `npm run lint` before committing
-- No Prettier config - rely on ESLint for formatting
+- `@/*` maps to project root — **always use `@/` aliases, never relative paths**
+- Order: external libs → `@/` aliases → (no relative)
+- Types only: `import { type Foo } from "@/..."`
 
-### TypeScript
-- **Strict mode enabled** - no implicit any
-- Use `erasableSyntaxOnly` - prefer `type` over `interface` unless needed
-- Use `verbatimModuleSyntax` - must use `import { type }` for types
-- Always type function parameters and return types
-- Use `noUnusedLocals` and `noUnusedParameters` - clean up unused code
+### Naming
 
-### Naming Conventions
-- **Components**: PascalCase (e.g., `Button`, `WeatherCard`)
-- **Functions/variables**: camelCase
-- **Constants**: SCREAMING_SNAKE_CASE for config values
-- **Files**: kebab-case for components (`weather-card.tsx`)
-- **UI Components**: colocate in `src/components/ui/`
+- Component files: kebab-case (`weather-card.tsx`), exports: PascalCase (`WeatherCard`)
+- Functions/variables: camelCase
+- Config constants: `SCREAMING_SNAKE_CASE`
 
-### Tailwind CSS 4
-- Uses `@tailwindcss/vite` plugin
-- Use utility classes extensively (see button.tsx for examples)
-- Use `cn()` utility from `@/lib/utils` for className merging
-- Use `cva` (class-variance-authority) for component variants
+### Components
 
-### Error Handling
-- Use try/catch for async operations
-- Display user-friendly error messages in UI
-- Use Zod for runtime validation of external data
+- One responsibility per component; if it grows, split it
+- All UI components live in `src/components/ui/` and follow the `cva` + `cn()` pattern for variants
+- Use `cn()` from `@/lib/utils` for all className merging
 
-### Component Patterns
-Follow the shadcn/ui-style pattern used in this project:
-```tsx
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+### State & data fetching
 
-const componentVariants = cva("base classes", {
-  variants: {
-    variant: { default: "...", secondary: "..." },
-    size: { default: "...", sm: "...", lg: "..." },
-  },
-  defaultVariants: { variant: "default", size: "default" },
-})
+- Local state: `useState`
+- Server state: `@tanstack/react-query` — no manual fetch/useEffect for remote data
+- Avoid context unless state is truly global; lift state up first
 
-function Component({
-  className,
-  variant = "default",
-  size = "default",
-  ...props
-}: React.ComponentProps<"element"> & VariantProps<typeof componentVariants>) {
-  return <Element className={cn(componentVariants({ variant, size, className }))} {...props} />
-}
+### Validation
 
-export { Component, componentVariants }
-```
+- Use Zod for all external data (API responses, env vars, form input)
 
-### State Management
-- Local state: `useState` for component state
-- Server state: `@tanstack/react-query`
-- Avoid unnecessary context - lift state up when possible
+## Doubts or unfamiliar tasks?
 
----
-
-## Project Structure
-
-```
-src/
-├── components/
-│   └── ui/           # Reusable UI components (shadcn-style)
-├── lib/
-│   └── utils.ts      # Utility functions (cn, etc.)
-├── App.tsx           # Main app component
-├── main.tsx          # Entry point
-└── index.css         # Global styles
-```
-
----
-
-## Key Dependencies
-
-- **UI**: Radix UI, Lucide React, class-variance-authority, tailwind-merge
-- **Data**: @tanstack/react-query, Zod
-- **Routing**: react-router 7
-- **Fonts**: @fontsource-variable (Geist, Manrope, Sora)
-
----
-
-## Common Tasks
-
-### Adding a new UI component
-1. Create file in `src/components/ui/component-name.tsx`
-2. Use cva for variants following button.tsx pattern
-3. Export both component and variants
-
-### Adding a new page/route
-1. Create component in appropriate directory
-2. Set up route in router configuration
-3. Use React Query for data fetching
-
-### Running typecheck separately
-```bash
-npx tsc -b          # Full build with type checking
-npx tsc --noEmit   # Type check without emitting
-```
-
----
-
-## Notes
-
-- This project uses ESNext module resolution with Vite
-- React 19 with new hooks (`use` hook available)
-- No test framework configured yet - consider adding Vitest
-- Follow existing patterns in `src/components/ui/` for new components
+Consult available skills in `/mnt/skills/` before proceeding.
