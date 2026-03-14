@@ -8,6 +8,7 @@ export function HomePage() {
       <footer>
         <Input placeholder="Buscar ciudad..." />
       </footer>
+      <div className="flex bg-red-500 p-4 text-white">Hola</div>
     </>
   );
 }
