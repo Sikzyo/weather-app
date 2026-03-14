@@ -1,6 +1,9 @@
-import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { Footer } from "@/components/footer";
 
 export function HomePage() {
+  const [city, setCity] = useState("");
+
   return (
     <>
       <header>
@@ -11,9 +14,7 @@ export function HomePage() {
       <main className="flex grow flex-col items-center justify-center gap-4">
         Información del clima
       </main>
-      <footer>
-        <Input placeholder="Buscar ciudad..." />
-      </footer>
+      <Footer city={city} onCityChange={setCity} />
     </>
   );
 }
