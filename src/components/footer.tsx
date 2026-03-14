@@ -8,8 +8,8 @@ import { Search, CircleX } from "lucide-react";
 
 export function Footer({ city, onCityChange }: FooterProps) {
   return (
-    <footer>
-      <InputGroup className="bg-mauve-2 h-11 rounded-full">
+    <footer className="flex justify-center">
+      <InputGroup className="bg-mauve-2 h-11 max-w-194 rounded-full">
         <InputGroupInput
           placeholder="Busca una ciudad"
           value={city}
