@@ -46,7 +46,7 @@ bun run lint   # eslint
 - Always use semantic elements (`<main>`, `<section>`, `<article>`, `<nav>`, `<header>`, `<footer>`, etc.)
 - Use semantic elements when they fit the content's meaning; use `<div>` and `<span>` only for layout/styling purposes with no semantic value
 - Markup must be valid and accessible (correct nesting, proper ARIA when needed)
-- Always write HTML structure first without styles; add Tailwind classes after
+- Always build structure first without any styles; add Tailwind classes only when explicitly requested
 
 ### State & data fetching
 
