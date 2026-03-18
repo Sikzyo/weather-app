@@ -44,7 +44,7 @@ export const GeocodingResponseSchema = z.object({
   results: z.array(GeocodingResultSchema).optional(),
 });
 
-export const CurrentWeather = z.object({
+export const CurrentWeatherSchema = z.object({
   temperature_2m: z.number(),
   is_day: z.number().min(0).max(1),
   weather_code: z.number().min(0).max(100),
@@ -52,3 +52,4 @@ export const CurrentWeather = z.object({
 
 export type GeocodingResult = z.infer<typeof GeocodingResultSchema>;
 export type GeocodingResponse = z.infer<typeof GeocodingResponseSchema>;
+export type CurrentWeather = z.infer<typeof CurrentWeatherSchema>;
