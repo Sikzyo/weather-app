@@ -14,7 +14,7 @@ export async function fetchGeocoding(
   const searchParams = new URLSearchParams({
     name: validated.city,
     count: validated.count?.toString() ?? "5",
-    language: validated.language ?? "en",
+    language: validated.language ?? "es",
   });
 
   const url = `${GEOCODING_BASE_URL}?${searchParams}`;
