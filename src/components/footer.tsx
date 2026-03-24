@@ -46,8 +46,12 @@ export function Footer({ city, onCityChange }: FooterProps) {
           </InputGroupButton>
         )}
       </InputGroup>
-      {city && isOpen && !isLoading && (
-        <SearchResults results={results} onSelect={handleSelect} />
+      {city && isOpen && (
+        <SearchResults
+          results={results}
+          onSelect={handleSelect}
+          isLoading={isLoading}
+        />
       )}
     </footer>
   );
