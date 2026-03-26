@@ -19,7 +19,7 @@ export function HomePage() {
         className={
           savedCities.length === 0
             ? "flex grow flex-col items-center justify-center"
-            : "grid grow auto-rows-min grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5"
+            : "grid grow auto-rows-min grid-cols-2 gap-4 sm:grid-cols-3 md:gap-8 lg:grid-cols-5"
         }
       >
         {savedCities.length === 0 ? (
