@@ -1,5 +1,6 @@
 import { createElement } from "react";
 import { Settings } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { getWeatherIcon } from "@/lib/weather-icons";
 import { getWeatherColors } from "@/lib/weather-colors";
 
@@ -8,8 +9,6 @@ interface WeatherCardProps {
   temperature?: number;
   weatherCode?: number;
   isDay?: boolean;
-  isLoading?: boolean;
-  error?: string | null;
   onSettings: () => void;
 }
 
@@ -18,38 +17,44 @@ export function WeatherCard({
   temperature,
   weatherCode,
   isDay,
-  isLoading,
-  error,
   onSettings,
 }: WeatherCardProps) {
-  const WeatherIcon = getWeatherIcon(weatherCode, isDay, !!error);
+  const WeatherIcon = getWeatherIcon(weatherCode, isDay);
   const colors =
     weatherCode !== undefined ? getWeatherColors(weatherCode, isDay) : null;
 
   return (
     <article
       data-slot="weather-card"
-      className="flex flex-col items-center justify-center gap-6 p-2"
+      className={cn(
+        "flex flex-col items-center gap-6 rounded-md p-2 md:gap-11",
+        !isDay && "dark",
+      )}
       style={{
         background: colors
-          ? `linear-gradient(to bottom, ${colors.gradientFrom}, ${colors.gradientTo})`
+          ? `linear-gradient(to bottom left, ${colors.gradientFrom}, ${colors.gradientTo})`
           : undefined,
+        color: colors?.text,
       }}
     >
       <header className="flex w-full items-center justify-between">
-        <h3 style={{ color: colors?.text }}>{city}</h3>
-        <button onClick={onSettings} aria-label="Configuración">
+        <h3 className="font-manrope text-2xl font-bold">{city}</h3>
+        <button
+          onClick={onSettings}
+          aria-label="Configuración"
+          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center"
+        >
           <Settings />
         </button>
       </header>
-      {isLoading && <p>Cargando...</p>}
-      {error && <p>Error: {error}</p>}
-      {!isLoading && !error && WeatherIcon && (
+      {WeatherIcon && (
         <>
-          <div style={{ color: colors?.text }}>
-            {createElement(WeatherIcon)}
+          <div className="flex grow items-center">
+            {createElement(WeatherIcon, { size: 100 })}
           </div>
-          <p style={{ color: colors?.text }}>{temperature}°C</p>
+          <p className="font-manrope w-full text-4xl font-bold">
+            {temperature}°
+          </p>
         </>
       )}
     </article>
