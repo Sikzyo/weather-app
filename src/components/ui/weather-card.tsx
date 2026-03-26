@@ -1,15 +1,16 @@
-import { createElement } from "react";
+import { createElement, useState } from "react";
 import { Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 import { getWeatherIcon } from "@/lib/weather-icons";
 import { getWeatherColors } from "@/lib/weather-colors";
+import { WeatherCardSettings } from "./weather-card-settings";
 
 interface WeatherCardProps {
   city: string;
   temperature?: number;
   weatherCode?: number;
   isDay?: boolean;
-  onSettings: () => void;
 }
 
 export function WeatherCard({
@@ -17,8 +18,8 @@ export function WeatherCard({
   temperature,
   weatherCode,
   isDay,
-  onSettings,
 }: WeatherCardProps) {
+  const [showSettings, setShowSettings] = useState(false);
   const WeatherIcon = getWeatherIcon(weatherCode, isDay);
   const colors =
     weatherCode !== undefined ? getWeatherColors(weatherCode, isDay) : null;
@@ -27,7 +28,7 @@ export function WeatherCard({
     <article
       data-slot="weather-card"
       className={cn(
-        "flex flex-col items-center gap-6 rounded-md p-2 md:gap-11",
+        "relative flex flex-col items-center gap-6 rounded-md p-2 md:gap-11",
         !isDay && "dark",
       )}
       style={{
@@ -37,14 +38,21 @@ export function WeatherCard({
         color: colors?.text,
       }}
     >
+      {showSettings && (
+        <WeatherCardSettings
+          onClose={() => setShowSettings(false)}
+          weatherCode={weatherCode!}
+          isDay={isDay!}
+        />
+      )}
       <header className="flex w-full items-center justify-between">
         <h3 className="font-manrope text-2xl font-bold">{city}</h3>
         <button
-          onClick={onSettings}
+          onClick={() => setShowSettings(true)}
           aria-label="Configuración"
-          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center"
+          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-sm hover:bg-current/10"
         >
-          <Settings />
+          <Settings size={24} />
         </button>
       </header>
       {WeatherIcon && (
