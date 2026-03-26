@@ -25,10 +25,7 @@ export function HomePage() {
         {savedCities.length === 0 ? (
           <EmptyState />
         ) : (
-          <WeatherCardList
-            cities={savedCities}
-            onSettings={(id) => console.log("settings for", id)}
-          />
+          <WeatherCardList cities={savedCities} />
         )}
       </main>
       <Footer city={city} onCityChange={setCity} />
