@@ -1,4 +1,5 @@
 import { X, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { getWeatherColors } from "@/lib/weather-colors";
 import { useSavedCitiesStore } from "@/hooks/use-saved-city";
@@ -46,6 +47,16 @@ export function WeatherCardSettings({
       <button
         onClick={() => {
           removeCity(cityId);
+          toast.success("Ciudad eliminada correctamente", {
+            position: "top-center",
+            style: {
+              backgroundColor: "var(--green-10)",
+              color: "var(--green-4)",
+              fontFamily: "Manrope, sans-serif",
+              fontSize: "16px",
+              fontWeight: 600,
+            },
+          });
           onClose();
         }}
         className="bg-red-2 text-red-10 hover:bg-red-10 hover:text-red-2 flex h-11 items-center justify-between rounded-sm p-2 transition-colors duration-300"
