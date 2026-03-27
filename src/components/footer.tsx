@@ -12,6 +12,7 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { useSavedCitiesStore } from "@/hooks/use-saved-city";
 import { type GeocodingResult } from "@/lib/schemas/weather";
 import { Search, CircleX } from "lucide-react";
+import { toast } from "sonner";
 
 export function Footer({ city, onCityChange }: FooterProps) {
   const navigate = useNavigate();
@@ -22,7 +23,17 @@ export function Footer({ city, onCityChange }: FooterProps) {
 
   const handleSelect = (result: GeocodingResult) => {
     addCity(result);
-    navigate(`/weather/${result.id}`);
+    toast.success("Ciudad guardada correctamente", {
+      position: "top-center",
+      style: {
+        backgroundColor: "var(--green-10)",
+        color: "var(--green-4)",
+        fontFamily: "Manrope, sans-serif",
+        fontSize: "16px",
+        fontWeight: 600,
+      },
+    });
+    navigate(`/`);
     onCityChange("");
     setIsOpen(false);
   };
