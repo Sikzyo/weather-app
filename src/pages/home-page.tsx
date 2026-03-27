@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Footer } from "@/components/footer";
 import { WeatherCardList } from "@/components/weather-card-list";
 import { EmptyState } from "@/components/ui/empty-state";
-import { useSavedCity } from "@/hooks/use-saved-city";
+import { useSavedCitiesStore } from "@/hooks/use-saved-city";
 
 export function HomePage() {
   const [city, setCity] = useState("");
-  const { savedCities } = useSavedCity();
+  const { cities } = useSavedCitiesStore();
 
   return (
     <>
@@ -17,15 +17,15 @@ export function HomePage() {
       </header>
       <main
         className={
-          savedCities.length === 0
+          cities.length === 0
             ? "flex grow flex-col items-center justify-center"
             : "grid grow auto-rows-min grid-cols-2 gap-4 sm:grid-cols-3 md:gap-8 lg:grid-cols-5"
         }
       >
-        {savedCities.length === 0 ? (
+        {cities.length === 0 ? (
           <EmptyState />
         ) : (
-          <WeatherCardList cities={savedCities} />
+          <WeatherCardList cities={cities} />
         )}
       </main>
       <Footer city={city} onCityChange={setCity} />

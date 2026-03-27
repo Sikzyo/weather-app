@@ -7,6 +7,7 @@ import { getWeatherColors } from "@/lib/weather-colors";
 import { WeatherCardSettings } from "./weather-card-settings";
 
 interface WeatherCardProps {
+  cityId: number;
   city: string;
   temperature?: number;
   weatherCode?: number;
@@ -14,6 +15,7 @@ interface WeatherCardProps {
 }
 
 export function WeatherCard({
+  cityId,
   city,
   temperature,
   weatherCode,
@@ -43,6 +45,7 @@ export function WeatherCard({
           onClose={() => setShowSettings(false)}
           weatherCode={weatherCode!}
           isDay={isDay!}
+          cityId={cityId}
         />
       )}
       <header className="flex w-full items-center justify-between">
@@ -50,7 +53,7 @@ export function WeatherCard({
         <button
           onClick={() => setShowSettings(true)}
           aria-label="Configuración"
-          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-sm hover:bg-current/10"
+          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-sm transition-colors duration-200 hover:bg-current/10"
         >
           <Settings size={24} />
         </button>

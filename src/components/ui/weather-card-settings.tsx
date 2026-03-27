@@ -1,25 +1,29 @@
-import { X } from "lucide-react";
+import { X, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getWeatherColors } from "@/lib/weather-colors";
+import { useSavedCitiesStore } from "@/hooks/use-saved-city";
 
 interface WeatherCardSettingsProps {
   onClose: () => void;
   weatherCode: number;
   isDay: boolean;
+  cityId: number;
 }
 
 export function WeatherCardSettings({
   onClose,
   weatherCode,
   isDay,
+  cityId,
 }: WeatherCardSettingsProps) {
   const colors = getWeatherColors(weatherCode, isDay);
+  const { removeCity } = useSavedCitiesStore();
 
   return (
     <div
       data-slot="weather-card-settings"
       className={cn(
-        "absolute inset-0 flex flex-col rounded-md p-2 backdrop-blur-sm",
+        "absolute inset-0 flex flex-col gap-4 rounded-md p-2 backdrop-blur-sm",
       )}
       style={{
         background: `linear-gradient(to bottom left, 
@@ -34,11 +38,23 @@ export function WeatherCardSettings({
         <button
           onClick={onClose}
           aria-label="Cerrar configuración"
-          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-sm hover:bg-current/10"
+          className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-sm transition-colors duration-200 hover:bg-current/10"
         >
           <X size={24} />
         </button>
       </header>
+      <button
+        onClick={() => {
+          removeCity(cityId);
+          onClose();
+        }}
+        className="flex h-11 items-center justify-between rounded-sm bg-red-600 p-2 text-red-200"
+      >
+        <span className="font-manrope text-sm font-medium">
+          Eliminar ciudad
+        </span>
+        <Trash2 size={20} />
+      </button>
     </div>
   );
 }

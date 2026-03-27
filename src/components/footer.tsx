@@ -9,7 +9,7 @@ import {
 import { SearchResults } from "@/components/ui/search-results";
 import { useGeocoding } from "@/hooks/use-geocoding";
 import { useDebounce } from "@/hooks/use-debounce";
-import { useSavedCity } from "@/hooks/use-saved-city";
+import { useSavedCitiesStore } from "@/hooks/use-saved-city";
 import { type GeocodingResult } from "@/lib/schemas/weather";
 import { Search, CircleX } from "lucide-react";
 
@@ -18,7 +18,7 @@ export function Footer({ city, onCityChange }: FooterProps) {
   const [isOpen, setIsOpen] = useState(false);
   const debouncedCity = useDebounce(city, 300);
   const { data, isLoading } = useGeocoding(debouncedCity);
-  const { addCity } = useSavedCity();
+  const { addCity } = useSavedCitiesStore();
 
   const handleSelect = (result: GeocodingResult) => {
     addCity(result);
