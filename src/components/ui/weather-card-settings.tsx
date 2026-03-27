@@ -48,12 +48,12 @@ export function WeatherCardSettings({
           removeCity(cityId);
           onClose();
         }}
-        className="flex h-11 items-center justify-between rounded-sm bg-red-600 p-2 text-red-200"
+        className="bg-red-2 text-red-10 hover:bg-red-10 hover:text-red-2 flex h-11 items-center justify-between rounded-sm p-2 transition-colors duration-300"
       >
-        <span className="font-manrope text-sm font-medium">
+        <span className="font-manrope text-sm font-semibold">
           Eliminar ciudad
         </span>
-        <Trash2 size={20} />
+        <Trash2 size={24} />
       </button>
     </div>
   );
