@@ -71,6 +71,8 @@
   --blue-4: #d5efff;
   --blue-5: #c2e5ff;
   --blue-12: #113264;
+  --green-4: #d6f1df;
+  --green-10: #2b9a66;
   --amber-3: #fff7c2;
   --amber-10: #ffba18;
   --amber-12: #4f3422;
@@ -148,6 +150,8 @@
   --blue-4: #003362;
   --blue-5: #004074;
   --blue-12: #c2e6ff;
+  --green-4: #113b29;
+  --green-10: #33b074;
   --amber-3: #302008;
   --amber-10: #ffd60a;
   --amber-12: #ffe7b3;
@@ -226,6 +230,8 @@
   --color-blue-4: var(--blue-4);
   --color-blue-5: var(--blue-5);
   --color-blue-12: var(--blue-12);
+  --color-green-4: var(--green-4);
+  --color-green-10: var(--green-10);
   --color-amber-3: var(--amber-3);
   --color-amber-10: var(--amber-10);
   --color-amber-12: var(--amber-12);
@@ -258,5 +264,8 @@
   }
   html {
     @apply font-sora;
+  }
+  section[aria-label="Notifications alt+T"] {
+    position: fixed !important;
   }
 }
