@@ -211,9 +211,9 @@ const COLOR_RULES: ColorRule[] = [
 ];
 
 const DEFAULT_COLORS: WeatherColors = {
-  gradientFrom: "#ffffff",
-  gradientTo: "#ffffff",
-  text: "#000000",
+  gradientFrom: "var(--slate-1)",
+  gradientTo: "var(--slate-1)",
+  text: "var(--slate-12)",
 };
 
 export function getWeatherColors(
