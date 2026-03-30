@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="./public/favicon.svg" alt="Weather App Logo" height="64" align="center" />
 
-Currently, two official plugins are available:
+Aplicación del clima que te permite buscar ciudades, guardar tus favoritas y ver las condiciones climáticas actuales con tarjetas de gradientes animados.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack Tecnológico
 
-## React Compiler
+- **Frontend**: React 19 · TypeScript (strict) · Vite 8 · Tailwind CSS 4
+- **Estado**: Zustand (persistente) · TanStack Query
+- **Componentes**: shadcn/ui · Radix UI · Lucide Icons
+- **APIs**: Open-Meteo Weather API · Open-Meteo Geocoding API
+- **Despliegue**: Cloudflare Workers (Wrangler)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funcionalidades
 
-## Expanding the ESLint configuration
+- **Búsqueda de ciudades**: Busca cualquier ciudad del mundo usando la API de Geocoding de Open-Meteo
+- **Ciudades guardadas**: Persiste tus ciudades favoritas usando Zustand con localStorage
+- **Datos del clima**: Ver temperatura actual, código del clima y estado día/noche
+- **Gradientes dinámicos**: Fondos con gradientes hermisos basados en las condiciones climáticas
+- **Diseño responsive**: Layout mobile-first que se adapta a cualquier pantalla
+- **Type-Safe**: TypeScript en modo estricto con validación Zod para todos los datos externos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Primeros Pasos
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+```bash
+# Instalar dependencias
+bun install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+# Iniciar servidor de desarrollo
+bun dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+## Scripts
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+| Comando          | Descripción                                  |
+| ---------------- | -------------------------------------------- |
+| `bun dev`        | Iniciar servidor de desarrollo               |
+| `bun run build`  | Compilar para producción (TypeScript + Vite) |
+| `bun run lint`   | Ejecutar ESLint                              |
+| `bun run format` | Formatear código con Prettier                |
+| `bun run deploy` | Desplegar a Cloudflare Workers               |
+
+## Estructura del Proyecto
+
 ```
+src/
+├── components/
+│   ├── ui/                  # Componentes shadcn/ui (button, input, card, etc.)
+│   │   ├── weather-card.tsx
+│   │   ├── weather-card-settings.tsx
+│   │   └── search-results.tsx
+│   ├── weather-card-list.tsx
+│   └── footer.tsx
+├── hooks/
+│   ├── use-saved-city.ts    # Store Zustand para ciudades persistidas
+│   ├── use-weather-forecast.ts
+│   └── use-geocoding.ts
+├── lib/
+│   ├── api/
+│   │   ├── weather.ts       # Cliente de Open-Meteo Weather API
+│   │   └── geocoding.ts     # Cliente de Open-Meteo Geocoding API
+│   ├── schemas/
+│   │   └── weather.ts       # Schemas Zod para validación de APIs
+│   ├── weather-icons.ts     # Renderizado dinámico de íconos del clima
+│   └── weather-colors.ts    # Colores de gradientes basados en el clima
+├── pages/
+│   ├── home-page.tsx
+│   └── weather-page.tsx
+├── router.ts
+└── main.tsx
+```
+
+## APIs
+
+### Open-Meteo Weather API
+
+Provee datos del clima actual incluyendo temperatura, código del clima e indicador de día/noche.
+
+### Open-Meteo Geocoding API
+
+Provee funcionalidad de búsqueda de ciudades con coordenadas (latitud/longitud).
+
+Ambas APIs son gratuitas y no requieren clave de API.
+
+## Arquitectura
+
+- **Data Fetching**: TanStack Query para todo el estado del servidor
+- **Estado del cliente**: Zustand con middleware `persist` para ciudades guardadas
+- **Validación**: Schemas Zod validan todas las respuestas de las APIs
+- **Estilos**: Tailwind CSS 4 con variables CSS y utilidad `cn()`
+- **Routing**: React Router v7 para navegación
