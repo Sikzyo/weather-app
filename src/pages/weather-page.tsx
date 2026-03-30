@@ -3,6 +3,7 @@ import { createElement } from "react";
 import { useSavedCitiesStore } from "@/hooks/use-saved-city";
 import { useWeatherForecast } from "@/hooks/use-weather-forecast";
 import { GradientBackground } from "@/components/ui/gradient-background";
+import { DateTimeDisplay } from "@/components/ui/date-time-display";
 import { ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getWeatherColors } from "@/lib/weather-colors";
@@ -13,7 +14,11 @@ export function WeatherPage() {
   const { cities } = useSavedCitiesStore();
   const cityId = Number(id);
   const city = cities.find((c) => c.id === cityId);
-  const { data } = useWeatherForecast(city!.latitude, city!.longitude);
+
+  const { data } = useWeatherForecast(
+    city?.latitude ?? 0,
+    city?.longitude ?? 0,
+  );
 
   const isDay = !!data?.current?.is_day;
   const weatherCode = data?.current?.weather_code;
@@ -46,10 +51,10 @@ export function WeatherPage() {
             {createElement(getWeatherIcon(weatherCode, isDay), {
               className: cn("w-24 h-24 md:w-30 md:h-30"),
             })}
-            <div className="flex flex-col"></div>
+            <DateTimeDisplay timezone={city!.timezone} />
           </figure>
           <section className="flex grow flex-col items-center justify-center">
-            <p className="font-manrope text-[120px] font-semibold">
+            <p className="font-manrope text-[120px] font-semibold md:text-[160px]">
               {data?.current?.temperature_2m}°
             </p>
           </section>
