@@ -5,7 +5,16 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.2.0] - 2026-03-30
+
+### Añadido
+
+- **Nombre del clima**: Nueva utilidad `getWeatherName()` que retorna el nombre legible del código meteorológico WMO
+- **Visualización del nombre del clima**: El nombre del clima se muestra debajo de la temperatura en la página de detalle
+
+### Corregido
+
+- Tamaño de texto responsivo en el componente `DateTimeDisplay` para pantallas medianas y mayores
 
 ## [1.1.0] - 2026-03-30
 
