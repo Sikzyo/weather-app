@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { Footer } from "@/components/footer";
 import { WeatherCardList } from "@/components/weather-card-list";
 import { EmptyState } from "@/components/ui/empty-state";
 import { useSavedCitiesStore } from "@/hooks/use-saved-city";
 
 export function HomePage() {
-  const [city, setCity] = useState("");
   const { cities } = useSavedCitiesStore();
 
   return (
@@ -28,7 +26,7 @@ export function HomePage() {
           <WeatherCardList cities={cities} />
         )}
       </main>
-      <Footer city={city} onCityChange={setCity} />
+      <Footer />
     </>
   );
 }
