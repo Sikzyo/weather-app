@@ -8,6 +8,7 @@ import { ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getWeatherColors } from "@/lib/weather-colors";
 import { getWeatherIcon } from "@/lib/weather-icons";
+import { getWeatherName } from "@/lib/weather-names";
 
 export function WeatherPage() {
   const { id } = useParams();
@@ -23,6 +24,7 @@ export function WeatherPage() {
   const isDay = !!data?.current?.is_day;
   const weatherCode = data?.current?.weather_code;
   const colors = getWeatherColors(weatherCode, isDay);
+  const weatherName = getWeatherName(weatherCode);
 
   return (
     <>
@@ -57,6 +59,7 @@ export function WeatherPage() {
             <p className="font-manrope text-[120px] font-semibold md:text-[160px]">
               {data?.current?.temperature_2m}°
             </p>
+            <p className="md:text-2xl">{weatherName}</p>
           </section>
         </main>
       </section>
