@@ -7,6 +7,25 @@ y este proyecto adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-03-30
+
+### Añadido
+
+- **Fondo degradado del clima**: Fondo de pantalla que cambia según el código del clima y si es día o noche
+- **Página de detalle del clima**: Nueva página con icono del clima, temperatura y estructura semántica con `<figure>` y `<section>`
+- **Icono meteorológico responsivo**: Icono del clima con tamaño adaptativo (96px en móvil, 120px en pantallas medianas+)
+- **Transiciones de vista**: Navegación fluida con View Transitions API entre la lista de ciudades y la página de detalle
+
+### Cambiado
+
+- Tarjetas de ciudad ahora navegan a la página de detalle del clima
+- Fondo degradado usa `cn()` para manejo de modo oscuro
+
+### Refactorizado
+
+- Componente `GradientBackground` extraído para reutilización
+- Página de clima ahora usa elementos semánticos (`<figure>`, `<section>`) en lugar de `<div>` genéricos
+
 ## [1.0.1] - 2026-03-27
 
 ### Seguridad
