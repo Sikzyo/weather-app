@@ -16,6 +16,8 @@ export async function fetchWeatherForecast(
     latitude: validated.latitude.toString(),
     longitude: validated.longitude.toString(),
     current: "temperature_2m,is_day,weather_code",
+    forecast_days: "1",
+    hourly: "temperature_2m,is_day,weather_code",
   });
 
   const url = `${OPEN_METEO_BASE_URL}?${searchParams}`;
