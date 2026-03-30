@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { getWeatherColors } from "@/lib/weather-colors";
 
 interface GradientBackgroundProps {
@@ -13,10 +14,9 @@ export function GradientBackground({
 
   return (
     <div
-      className="fixed inset-0 -z-10"
+      className={cn("fixed inset-0 -z-10", !isDay && "dark")}
       style={{
         background: `linear-gradient(to bottom left, ${colors.gradientFrom}, ${colors.gradientTo})`,
-        color: colors.text,
       }}
     />
   );
