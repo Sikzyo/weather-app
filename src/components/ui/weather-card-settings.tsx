@@ -1,3 +1,4 @@
+import type React from "react";
 import { X, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -5,7 +6,7 @@ import { getWeatherColors } from "@/lib/weather-colors";
 import { useSavedCitiesStore } from "@/hooks/use-saved-city";
 
 interface WeatherCardSettingsProps {
-  onClose: () => void;
+  onClose: (e?: React.MouseEvent) => void;
   weatherCode: number;
   isDay: boolean;
   cityId: number;
@@ -33,11 +34,19 @@ export function WeatherCardSettings({
     )`,
         color: colors.text,
       }}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
     >
       <header className="flex items-center justify-between">
         <h2 className="font-manrope text-2xl font-semibold">Ajustes</h2>
         <button
-          onClick={onClose}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onClose(e);
+          }}
           aria-label="Cerrar configuración"
           className="flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-sm transition-colors duration-200 hover:bg-current/10"
         >
