@@ -9,7 +9,7 @@ export function DateTimeDisplay({ timezone }: DateTimeDisplayProps) {
   const now = useCurrentTime();
 
   return (
-    <div className="font-manrope flex flex-col items-end gap-1 font-semibold">
+    <div className="font-manrope flex flex-col items-end gap-1 font-semibold md:text-2xl">
       <p className="capitalize">{formatDate(timezone, now)}</p>
       <p>{formatTime(timezone, now)}</p>
     </div>
