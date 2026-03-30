@@ -28,7 +28,7 @@ export function WeatherCard({
     weatherCode !== undefined ? getWeatherColors(weatherCode, isDay) : null;
 
   return (
-    <Link to={`/weather/${cityId}`} className="contents">
+    <Link to={`/weather/${cityId}`} className="contents" viewTransition>
       <article
         data-slot="weather-card"
         className={cn(
