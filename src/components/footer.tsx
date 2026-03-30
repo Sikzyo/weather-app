@@ -23,7 +23,7 @@ export function Footer() {
         fontWeight: 600,
       },
     });
-    navigate(`/weather/${result.id}`);
+    navigate(`/weather/${result.id}`, { viewTransition: true });
     setCity("");
     setIsOpen(false);
   };
