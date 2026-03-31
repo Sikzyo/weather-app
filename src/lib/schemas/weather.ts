@@ -60,11 +60,19 @@ export const HourlyWeatherSchema = z.object({
 });
 export type HourlyWeather = z.infer<typeof HourlyWeatherSchema>;
 
+export const DailyWeatherSchema = z.object({
+  time: z.array(z.string()),
+  sunrise: z.array(z.string()),
+  sunset: z.array(z.string()),
+});
+export type DailyWeather = z.infer<typeof DailyWeatherSchema>;
+
 export const WeatherForecastResponseSchema = z.object({
   latitude: z.number(),
   longitude: z.number(),
   current: CurrentWeatherSchema.optional(),
   hourly: HourlyWeatherSchema.optional(),
+  daily: DailyWeatherSchema.optional(),
 });
 export type WeatherForecastResponse = z.infer<
   typeof WeatherForecastResponseSchema
