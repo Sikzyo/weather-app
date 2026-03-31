@@ -14,6 +14,8 @@ import {
   MoonStar,
   Snowflake,
   Sun,
+  Sunrise,
+  Sunset,
   type LucideIcon,
 } from "lucide-react";
 
@@ -21,7 +23,11 @@ export function getWeatherIcon(
   code: number | undefined,
   isDay = true,
   cloudOff = false,
+  isSunrise?: boolean,
+  isSunset?: boolean,
 ): LucideIcon {
+  if (isSunrise) return Sunrise;
+  if (isSunset) return Sunset;
   if (cloudOff || code === undefined) return CloudOff;
 
   if (!isDay) {
