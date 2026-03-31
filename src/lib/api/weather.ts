@@ -17,6 +17,7 @@ export async function fetchWeatherForecast(
     longitude: validated.longitude.toString(),
     current: "temperature_2m,is_day,weather_code",
     forecast_days: "1",
+    timezone: "auto",
     hourly: "temperature_2m,is_day,weather_code",
   });
 
