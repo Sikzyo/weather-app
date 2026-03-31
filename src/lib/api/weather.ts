@@ -19,6 +19,7 @@ export async function fetchWeatherForecast(
     forecast_days: "1",
     timezone: "auto",
     hourly: "temperature_2m,is_day,weather_code",
+    daily: "sunrise,sunset",
   });
 
   const url = `${OPEN_METEO_BASE_URL}?${searchParams}`;
