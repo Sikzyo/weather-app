@@ -15,3 +15,11 @@ export function formatDate(timezone: string | undefined, date: Date): string {
     timeZone: timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
   }).format(date);
 }
+
+export function formatHour(time: string): string {
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  }).format(new Date(time));
+}
