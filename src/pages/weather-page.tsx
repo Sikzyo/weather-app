@@ -65,6 +65,7 @@ export function WeatherPage() {
           {data?.hourly && (
             <HourlyWeatherList
               hourly={data.hourly}
+              daily={data?.daily}
               timezone={
                 city!.timezone ??
                 Intl.DateTimeFormat().resolvedOptions().timeZone
