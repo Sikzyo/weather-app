@@ -5,6 +5,13 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-03-31
+
+### Añadido
+
+- **Iconos de sunrise y sunset**: Nuevos iconos `Sunrise` y `Sunset` añadidos a `getWeatherIcon()`
+- **Horario de sunrise/sunset en lista hourly**: Los items de la lista hourly ahora muestran los horarios de sunrise y sunset del día
+
 ## [1.3.0] - 2026-03-31
 
 ### Añadido
