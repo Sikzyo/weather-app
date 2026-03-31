@@ -5,6 +5,20 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-03-31
+
+### Añadido
+
+- **Pronóstico hourly**: Nuevo componente `HourlyWeatherList` que muestra las horas restantes del día actual
+- **Filtro de horas**: Las horas mostradas se filtran automáticamente según la hora actual en el timezone de la ciudad
+- **Formateo de hora 12h**: Nueva utilidad `formatHour()` para mostrar la hora en formato AM/PM
+- **API timezone**: La solicitud al API ahora usa `timezone: auto` para obtener datos en el timezone de la ciudad
+
+### Refactorizado
+
+- Lógica de filtrado de horas extraída a `getUpcomingHours()` en `src/lib/hourly.ts`
+- Componente `HourlyWeatherItem` ahora usa helper `formatHour()` en lugar de formateo inline
+
 ## [1.2.0] - 2026-03-30
 
 ### Añadido
