@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { getWeatherColors } from "@/lib/weather-colors";
 import { getWeatherIcon } from "@/lib/weather-icons";
 import { getWeatherName } from "@/lib/weather-names";
+import { HourlyWeatherList } from "@/components/ui/hourly-weather-list";
 
 export function WeatherPage() {
   const { id } = useParams();
@@ -48,8 +49,8 @@ export function WeatherPage() {
             {city!.name}
           </h1>
         </header>
-        <main className="flex h-full flex-col gap-8">
-          <figure className="flex items-center justify-between">
+        <main className="flex h-full flex-col items-center gap-8">
+          <figure className="flex w-full items-center justify-between">
             {createElement(getWeatherIcon(weatherCode, isDay), {
               className: cn("w-24 h-24 md:w-30 md:h-30"),
             })}
@@ -61,6 +62,15 @@ export function WeatherPage() {
             </p>
             <p className="md:text-2xl">{weatherName}</p>
           </section>
+          {data?.hourly && (
+            <HourlyWeatherList
+              hourly={data.hourly}
+              timezone={
+                city!.timezone ??
+                Intl.DateTimeFormat().resolvedOptions().timeZone
+              }
+            />
+          )}
         </main>
       </section>
     </>
